@@ -6,41 +6,93 @@
 <title>Plasencia Handball</title>
 
 <style>
-body{
+*{
     margin:0;
-    font-family:Arial;
-    background:#0b1f3a;
-    color:white;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body{
+    height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
-    height:100vh;
+    background: linear-gradient(135deg,#071a33,#0d2b55,#123d75);
+    color:white;
 }
+
 .container{
     text-align:center;
     width:90%;
-    max-width:400px;
+    max-width:420px;
+    padding:30px;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.4);
 }
-a{
-    display:block;
-    background:#ff7e00;
+
+.logo{
+    font-size:30px;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    opacity:0.8;
+    margin-bottom:25px;
+    font-size:14px;
+}
+
+.button{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    background:#ffcc00;
     color:#000;
     text-decoration:none;
     padding:15px;
     margin:12px 0;
-    border-radius:12px;
+    border-radius:14px;
     font-weight:bold;
+    font-size:17px;
+    transition:0.2s;
+}
+
+.button:hover{
+    transform:scale(1.04);
+}
+
+.footer{
+    margin-top:20px;
+    font-size:12px;
+    opacity:0.6;
 }
 </style>
 </head>
 
 <body>
-<div class="container">
-    <h1>🏆 Plasencia Handball 2026</h1>
 
-    <a href="https://plasencia-handball-2026.vercel.app/">📱 App del Torneo</a>
-    <a href="https://www.instagram.com/plasenciahandball?igsh=MTFzYWppb3l6N2VhdQ==">📸 Instagram</a>
-    <a href="http://swltv.es/directo">🎥 Directo / Twitch</a>
+<div class="container">
+    <div class="logo">🏆 Plasencia Handball</div>
+    <div class="subtitle">4ª Edición · Torneo Internacional</div>
+
+    <a class="button" href="https://plasencia-handball-2026.vercel.app/" target="_blank">
+        📱 App del Torneo
+    </a>
+
+    <a class="button" href="https://www.instagram.com/plasenciahandball?igsh=MTFzYWppb3l6N2VhdQ==" target="_blank">
+        📸 Instagram
+    </a>
+
+    <a class="button" href="http://swltv.es/directo" target="_blank">
+        🎥 Ver Directo
+    </a>
+
+    <div class="footer">Escanea y vive el torneo</div>
 </div>
+
 </body>
 </html>
