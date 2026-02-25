@@ -6,6 +6,7 @@
 <title>Plasencia Handball</title>
 
 <style>
+
 *{
     margin:0;
     padding:0;
@@ -13,63 +14,101 @@
     font-family:Arial, sans-serif;
 }
 
+/* ===== FIX TOTAL MOVIL ===== */
+html, body{
+    width:100%;
+    height:100%;
+    overflow-x:hidden;
+}
+
 body{
-    height:100vh;
+    min-height:100vh;
+    min-height:100dvh;
     display:flex;
     justify-content:center;
     align-items:center;
-    background: radial-gradient(circle at top,#1b4c88,#071a33 70%);
-    overflow:hidden;
+    padding:25px 0;
+    position:relative;
+    background: radial-gradient(circle at top,#1b4c88 0%,#0b2e5c 40%,#071a33 100%);
 }
 
-/* luz fondo */
-body::before{
+/* ===== EFECTOS PROFUNDIDAD FONDO ===== */
+body::before,
+body::after{
     content:"";
-    position:absolute;
-    width:500px;
-    height:500px;
-    background:rgba(255,204,0,0.15);
-    filter:blur(120px);
+    position:fixed;
+    border-radius:50%;
+    filter:blur(130px);
+    z-index:0;
+    pointer-events:none;
+}
+
+body::before{
+    width:450px;
+    height:450px;
+    background:rgba(255,204,0,0.18);
     top:-120px;
     right:-120px;
 }
 
-/* tarjeta */
+body::after{
+    width:400px;
+    height:400px;
+    background:rgba(145,70,255,0.18);
+    bottom:-120px;
+    left:-120px;
+}
+
+/* ===== TARJETA PRINCIPAL ===== */
 .container{
+    position:relative;
+    z-index:2;
     width:90%;
     max-width:420px;
     background:rgba(255,255,255,0.08);
-    backdrop-filter: blur(14px);
-    border-radius:24px;
-    padding:25px;
+    backdrop-filter: blur(16px);
+    border-radius:26px;
+    padding:28px 22px;
     text-align:center;
-    box-shadow:0 15px 40px rgba(0,0,0,0.45);
-    animation:fadeIn .8s ease;
+
+    /* profundidad */
+    box-shadow:
+        0 30px 60px rgba(0,0,0,0.45),
+        0 10px 25px rgba(0,0,0,0.25);
+
+    /* animación entrada */
+    animation:masterIntro 0.9s ease;
 }
 
-@keyframes fadeIn{
-    from{opacity:0; transform:translateY(20px);}
-    to{opacity:1; transform:translateY(0);}
+@keyframes masterIntro{
+    from{
+        opacity:0;
+        transform:translateY(35px) scale(.97);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
 }
 
-/* logo */
+/* ===== LOGO ===== */
 .logo-img{
-    width:150%;
+    width:100%;
     max-width:260px;
     margin:0 auto 18px auto;
     display:block;
 }
 
-/* subtitulo */
+/* ===== TEXTO ===== */
 .subtitle{
     color:white;
     font-size:13px;
-    opacity:.75;
-    margin-bottom:25px;
+    opacity:.78;
+    margin-bottom:24px;
     letter-spacing:1px;
 }
 
-/* botones */
+/* ===== BOTONES PRO ===== */
 .button{
     display:flex;
     align-items:center;
@@ -81,7 +120,26 @@ body::before{
     border-radius:16px;
     font-size:17px;
     font-weight:bold;
-    transition:.25s;
+    transition:all .28s ease;
+    position:relative;
+    overflow:hidden;
+}
+
+.button::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(255,255,255,0.15);
+    opacity:0;
+    transition:.3s;
+}
+
+.button:hover::before{
+    opacity:1;
+}
+
+.button:active{
+    transform:scale(.98);
 }
 
 .button:hover{
@@ -101,12 +159,23 @@ body::before{
     background:linear-gradient(45deg,#9146ff,#772ce8);
 }
 
+/* ===== FOOTER ===== */
 .footer{
     margin-top:18px;
     color:white;
     font-size:12px;
     opacity:.6;
 }
+
+/* ===== ADAPTACIÓN SCROLL MOVIL ===== */
+@media (max-height:700px){
+    body{
+        align-items:flex-start;
+        padding-top:25px;
+        padding-bottom:25px;
+    }
+}
+
 </style>
 </head>
 
@@ -114,7 +183,6 @@ body::before{
 
 <div class="container">
 
-    <!-- LOGO DEL TORNEO -->
     <img src="logo.png" class="logo-img" alt="Logo Plasencia Handball">
 
     <div class="subtitle">4ª EDICIÓN · TORNEO INTERNACIONAL</div>
