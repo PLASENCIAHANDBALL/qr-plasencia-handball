@@ -11,83 +11,73 @@
 html,body{width:100%;height:100%;overflow:hidden;}
 
 body{
-    background:radial-gradient(circle at top,#1f4f8d 0%,#0d2f5f 45%,#071a33 100%);
+    background:linear-gradient(180deg,#f3a05d 0%,#ef984f 100%);
     display:flex;
     justify-content:center;
     align-items:center;
     position:relative;
 }
 
-/* ===== INTRO ===== */
+/* ===== INTRO (ESTILO APP) ===== */
 .intro{
     position:fixed;
     inset:0;
+    background:#ef984f;
     display:flex;
     justify-content:center;
     align-items:center;
-    background:#071a33;
+    flex-direction:column;
     z-index:20;
     animation:introHide 1s ease forwards;
-    animation-delay:2.8s;
+    animation-delay:2.7s;
 }
 
 .intro img{
-    width:260px;
-    opacity:0;
-    filter:drop-shadow(0 0 20px rgba(255,255,255,.6));
-    animation:introLogo 2.5s ease forwards;
+    width:230px;
+    margin-bottom:80px;
+    animation:introLogo 2.2s ease forwards;
+}
+
+.loader{
+    width:65%;
+    height:14px;
+    border-radius:20px;
+    background:rgba(255,255,255,.35);
+    overflow:hidden;
+}
+.loader::after{
+    content:"";
+    display:block;
+    width:35%;
+    height:100%;
+    background:white;
+    border-radius:20px;
+    animation:load 2.2s ease forwards;
+}
+@keyframes load{
+    from{width:0;}
+    to{width:100%;}
 }
 
 @keyframes introLogo{
-    0%{opacity:0;transform:scale(.7);}
-    60%{opacity:1;transform:scale(1.05);}
-    100%{opacity:1;transform:scale(1);}
+    from{opacity:0;transform:scale(.75);}
+    to{opacity:1;transform:scale(1);}
 }
 
 @keyframes introHide{
-    to{
-        opacity:0;
-        visibility:hidden;
-    }
+    to{opacity:0;visibility:hidden;}
 }
 
-/* ===== LUCES FONDO ===== */
-body::before, body::after{
+/* ===== LUCES SUAVES ===== */
+body::before{
     content:"";
     position:fixed;
-    border-radius:50%;
-    filter:blur(140px);
-    z-index:0;
-}
-
-body::before{
-    width:450px;height:450px;
-    background:rgba(255,204,0,.25);
-    top:-120px;right:-120px;
-}
-
-body::after{
-    width:420px;height:420px;
-    background:rgba(145,70,255,.22);
-    bottom:-120px;left:-120px;
-}
-
-/* ===== PARTICULAS ===== */
-.particles{
-    position:fixed;
-    inset:0;
-    z-index:1;
-}
-.particles span{
-    position:absolute;
-    width:6px;height:6px;
-    border-radius:50%;
-    background:rgba(255,255,255,.25);
-    animation:float 12s linear infinite;
-}
-@keyframes float{
-    from{transform:translateY(110vh);}
-    to{transform:translateY(-10vh);}
+    width:400px;
+    height:400px;
+    background:rgba(255,255,255,.2);
+    filter:blur(130px);
+    top:-120px;
+    right:-120px;
 }
 
 /* ===== TARJETA ===== */
@@ -96,16 +86,17 @@ body::after{
     z-index:3;
     width:90%;
     max-width:420px;
-    background:rgba(255,255,255,.08);
-    backdrop-filter:blur(18px);
-    border-radius:28px;
-    padding:28px 22px;
+    background:rgba(255,255,255,.22);
+    backdrop-filter:blur(14px);
+    border-radius:26px;
+    padding:25px 20px;
     text-align:center;
-    box-shadow:0 35px 70px rgba(0,0,0,.5);
+    box-shadow:0 20px 40px rgba(0,0,0,.25);
+
     opacity:0;
-    transform:translateY(40px) scale(.95);
-    animation:menuIn 1s ease forwards;
-    animation-delay:2.7s;
+    transform:translateY(30px) scale(.95);
+    animation:menuIn .9s ease forwards;
+    animation-delay:2.5s;
 }
 
 @keyframes menuIn{
@@ -118,68 +109,68 @@ body::after{
 /* ===== LOGO ===== */
 .logo-img{
     width:100%;
-    max-width:260px;
+    max-width:250px;
     margin:0 auto 16px auto;
-    filter:drop-shadow(0 0 15px rgba(255,255,255,.4));
-    animation:glow 3s infinite;
-}
-@keyframes glow{
-    50%{filter:drop-shadow(0 0 22px rgba(255,255,255,.65));}
+    filter:drop-shadow(0 0 8px rgba(255,255,255,.4));
 }
 
-/* ===== TEXTO ===== */
+/* ===== TEXT ===== */
 .subtitle{
-    color:white;
-    opacity:.8;
+    color:#ffffff;
     font-size:13px;
-    margin-bottom:24px;
+    opacity:.9;
+    margin-bottom:20px;
     letter-spacing:1px;
 }
 
-/* ===== BOTONES GOD ===== */
+/* ===== BOTONES APP STYLE ===== */
 .button{
-    position:relative;
     display:flex;
     justify-content:center;
     align-items:center;
     text-decoration:none;
     color:white;
-    padding:16px;
+    padding:15px;
     margin:12px 0;
     border-radius:16px;
     font-size:17px;
     font-weight:bold;
+    position:relative;
     overflow:hidden;
     transition:.25s;
 }
 
-.button:hover{transform:translateY(-2px) scale(1.02);}
+.button:hover{transform:translateY(-2px);}
 .button:active{transform:scale(.98);}
 
 .button::after{
     content:"";
     position:absolute;
-    top:0;left:-120%;
-    width:60%;height:100%;
-    background:rgba(255,255,255,.35);
+    top:0;
+    left:-120%;
+    width:60%;
+    height:100%;
+    background:rgba(255,255,255,.3);
     transform:skewX(-25deg);
     animation:shine 3.5s infinite;
 }
+
 @keyframes shine{
     0%{left:-120%;}
     60%{left:120%;}
     100%{left:120%;}
 }
 
-.app{background:linear-gradient(45deg,#ffcc00,#ffb300);color:black;}
-.ig{background:linear-gradient(45deg,#d62976,#962fbf,#4f5bd5);}
-.twitch{background:linear-gradient(45deg,#9146ff,#772ce8);}
+/* colores app */
+.app{background:linear-gradient(45deg,#ffbe2e,#ffa600);color:#000;}
+.ig{background:linear-gradient(45deg,#ff3e9d,#b241ff);}
+.twitch{background:linear-gradient(45deg,#9c52ff,#7c33ff);}
 
 .footer{
-    margin-top:18px;
-    color:white;
-    opacity:.6;
+    margin-top:16px;
     font-size:12px;
+    color:white;
+    opacity:.75;
 }
 
 </style>
@@ -189,17 +180,8 @@ body::after{
 
 <!-- INTRO -->
 <div class="intro">
-    <img src="logo.png" alt="">
-</div>
-
-<!-- PARTICULAS -->
-<div class="particles">
-    <span style="left:10%;animation-delay:0s"></span>
-    <span style="left:25%;animation-delay:2s"></span>
-    <span style="left:40%;animation-delay:4s"></span>
-    <span style="left:55%;animation-delay:1s"></span>
-    <span style="left:70%;animation-delay:3s"></span>
-    <span style="left:85%;animation-delay:5s"></span>
+    <img src="logo.png">
+    <div class="loader"></div>
 </div>
 
 <!-- MENU -->
@@ -226,11 +208,11 @@ body::after{
 </div>
 
 <script>
-/* ===== MICRO PARALLAX ===== */
+/* micro parallax suave */
 const card=document.getElementById("card");
 window.addEventListener("deviceorientation",(e)=>{
-let x=e.gamma/25;
-let y=e.beta/50;
+let x=e.gamma/35;
+let y=e.beta/60;
 card.style.transform=`rotateY(${x}deg) rotateX(${y}deg)`;
 });
 </script>
