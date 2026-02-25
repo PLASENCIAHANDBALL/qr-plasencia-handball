@@ -7,79 +7,87 @@
 
 <style>
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, sans-serif;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
+html,body{width:100%;height:100%;overflow:hidden;}
 
-html,body{
-    width:100%;
-    height:100%;
-    overflow-x:hidden;
-}
-
-/* ===== FONDO LEGENDARIO ===== */
 body{
-    min-height:100vh;
-    min-height:100dvh;
+    background:radial-gradient(circle at top,#1f4f8d 0%,#0d2f5f 45%,#071a33 100%);
     display:flex;
     justify-content:center;
     align-items:center;
-    padding:25px 0;
-    background:
-        radial-gradient(circle at top,#1f4f8d 0%,#0e2d57 45%,#071a33 100%);
     position:relative;
 }
 
-/* luces profundidad */
-body::before,
-body::after{
+/* ===== INTRO ===== */
+.intro{
+    position:fixed;
+    inset:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#071a33;
+    z-index:20;
+    animation:introHide 1s ease forwards;
+    animation-delay:2.8s;
+}
+
+.intro img{
+    width:260px;
+    opacity:0;
+    filter:drop-shadow(0 0 20px rgba(255,255,255,.6));
+    animation:introLogo 2.5s ease forwards;
+}
+
+@keyframes introLogo{
+    0%{opacity:0;transform:scale(.7);}
+    60%{opacity:1;transform:scale(1.05);}
+    100%{opacity:1;transform:scale(1);}
+}
+
+@keyframes introHide{
+    to{
+        opacity:0;
+        visibility:hidden;
+    }
+}
+
+/* ===== LUCES FONDO ===== */
+body::before, body::after{
     content:"";
     position:fixed;
     border-radius:50%;
     filter:blur(140px);
     z-index:0;
-    pointer-events:none;
 }
 
 body::before{
-    width:450px;
-    height:450px;
-    background:rgba(255,204,0,0.25);
-    top:-140px;
-    right:-140px;
+    width:450px;height:450px;
+    background:rgba(255,204,0,.25);
+    top:-120px;right:-120px;
 }
 
 body::after{
-    width:420px;
-    height:420px;
-    background:rgba(145,70,255,0.22);
-    bottom:-140px;
-    left:-140px;
+    width:420px;height:420px;
+    background:rgba(145,70,255,.22);
+    bottom:-120px;left:-120px;
 }
 
 /* ===== PARTICULAS ===== */
 .particles{
     position:fixed;
     inset:0;
-    overflow:hidden;
     z-index:1;
 }
-
 .particles span{
     position:absolute;
-    width:6px;
-    height:6px;
-    background:rgba(255,255,255,0.25);
+    width:6px;height:6px;
     border-radius:50%;
+    background:rgba(255,255,255,.25);
     animation:float 12s linear infinite;
 }
-
 @keyframes float{
-    from{transform:translateY(110vh) scale(0.5);}
-    to{transform:translateY(-10vh) scale(1.3);}
+    from{transform:translateY(110vh);}
+    to{transform:translateY(-10vh);}
 }
 
 /* ===== TARJETA ===== */
@@ -88,46 +96,38 @@ body::after{
     z-index:3;
     width:90%;
     max-width:420px;
-    background:rgba(255,255,255,0.08);
+    background:rgba(255,255,255,.08);
     backdrop-filter:blur(18px);
     border-radius:28px;
     padding:28px 22px;
     text-align:center;
-
-    box-shadow:
-        0 35px 70px rgba(0,0,0,0.5),
-        0 10px 25px rgba(0,0,0,0.25);
-
-    animation:enter 1s ease;
-    transition:transform .25s ease;
+    box-shadow:0 35px 70px rgba(0,0,0,.5);
+    opacity:0;
+    transform:translateY(40px) scale(.95);
+    animation:menuIn 1s ease forwards;
+    animation-delay:2.7s;
 }
 
-@keyframes enter{
-    from{
-        opacity:0;
-        transform:translateY(40px) scale(.95);
-    }
+@keyframes menuIn{
     to{
         opacity:1;
         transform:translateY(0) scale(1);
     }
 }
 
-/* ===== LOGO GLOW ===== */
+/* ===== LOGO ===== */
 .logo-img{
     width:100%;
     max-width:260px;
     margin:0 auto 16px auto;
-    display:block;
-    filter:drop-shadow(0 0 10px rgba(255,255,255,0.35));
-    animation:glow 3s ease-in-out infinite;
+    filter:drop-shadow(0 0 15px rgba(255,255,255,.4));
+    animation:glow 3s infinite;
 }
-
 @keyframes glow{
-    0%,100%{filter:drop-shadow(0 0 8px rgba(255,255,255,0.25));}
-    50%{filter:drop-shadow(0 0 18px rgba(255,255,255,0.55));}
+    50%{filter:drop-shadow(0 0 22px rgba(255,255,255,.65));}
 }
 
+/* ===== TEXTO ===== */
 .subtitle{
     color:white;
     opacity:.8;
@@ -136,12 +136,12 @@ body::after{
     letter-spacing:1px;
 }
 
-/* ===== BOTONES LEGENDARY ===== */
+/* ===== BOTONES GOD ===== */
 .button{
     position:relative;
     display:flex;
-    align-items:center;
     justify-content:center;
+    align-items:center;
     text-decoration:none;
     color:white;
     padding:16px;
@@ -150,69 +150,47 @@ body::after{
     font-size:17px;
     font-weight:bold;
     overflow:hidden;
-    transition:transform .25s ease;
+    transition:.25s;
 }
 
-.button:hover{
-    transform:translateY(-2px) scale(1.02);
-}
+.button:hover{transform:translateY(-2px) scale(1.02);}
+.button:active{transform:scale(.98);}
 
-.button:active{
-    transform:scale(.98);
-}
-
-/* brillo moving */
 .button::after{
     content:"";
     position:absolute;
-    top:0;
-    left:-120%;
-    width:60%;
-    height:100%;
-    background:rgba(255,255,255,0.35);
+    top:0;left:-120%;
+    width:60%;height:100%;
+    background:rgba(255,255,255,.35);
     transform:skewX(-25deg);
     animation:shine 3.5s infinite;
 }
-
 @keyframes shine{
     0%{left:-120%;}
     60%{left:120%;}
     100%{left:120%;}
 }
 
-.app{
-    background:linear-gradient(45deg,#ffcc00,#ffb300);
-    color:black;
-}
-
-.ig{
-    background:linear-gradient(45deg,#d62976,#962fbf,#4f5bd5);
-}
-
-.twitch{
-    background:linear-gradient(45deg,#9146ff,#772ce8);
-}
+.app{background:linear-gradient(45deg,#ffcc00,#ffb300);color:black;}
+.ig{background:linear-gradient(45deg,#d62976,#962fbf,#4f5bd5);}
+.twitch{background:linear-gradient(45deg,#9146ff,#772ce8);}
 
 .footer{
     margin-top:18px;
     color:white;
-    font-size:12px;
     opacity:.6;
-}
-
-/* ===== MÓVIL SCROLL ===== */
-@media (max-height:700px){
-    body{
-        align-items:flex-start;
-        padding-top:20px;
-        padding-bottom:20px;
-    }
+    font-size:12px;
 }
 
 </style>
 </head>
 
 <body>
+
+<!-- INTRO -->
+<div class="intro">
+    <img src="logo.png" alt="">
+</div>
 
 <!-- PARTICULAS -->
 <div class="particles">
@@ -224,37 +202,36 @@ body::after{
     <span style="left:85%;animation-delay:5s"></span>
 </div>
 
+<!-- MENU -->
 <div class="container" id="card">
 
-    <img src="logo.png" class="logo-img" alt="Logo Plasencia Handball">
+<img src="logo.png" class="logo-img">
 
-    <div class="subtitle">4ª EDICIÓN · TORNEO INTERNACIONAL</div>
+<div class="subtitle">4ª EDICIÓN · TORNEO INTERNACIONAL</div>
 
-    <a class="button app" href="https://plasencia-handball-2026.vercel.app/" target="_blank">
-        📱 APP OFICIAL DEL TORNEO
-    </a>
+<a class="button app" href="https://plasencia-handball-2026.vercel.app/" target="_blank">
+📱 APP OFICIAL DEL TORNEO
+</a>
 
-    <a class="button ig" href="https://www.instagram.com/plasenciahandball?igsh=MTFzYWppb3l6N2VhdQ==" target="_blank">
-        📸 INSTAGRAM
-    </a>
+<a class="button ig" href="https://www.instagram.com/plasenciahandball?igsh=MTFzYWppb3l6N2VhdQ==" target="_blank">
+📸 INSTAGRAM
+</a>
 
-    <a class="button twitch" href="http://swltv.es/directo" target="_blank">
-        🎥 VER DIRECTO
-    </a>
+<a class="button twitch" href="http://swltv.es/directo" target="_blank">
+🎥 VER DIRECTO
+</a>
 
-    <div class="footer">Escanea · Elige · Vive el torneo</div>
+<div class="footer">Escanea · Elige · Vive el torneo</div>
 
 </div>
 
 <script>
-/* ===== MICRO PARALLAX MOVIL ===== */
-const card = document.getElementById("card");
-
-window.addEventListener("deviceorientation", e => {
-    let x = e.gamma / 25;
-    let y = e.beta / 50;
-    card.style.transform =
-        `rotateY(${x}deg) rotateX(${y}deg)`;
+/* ===== MICRO PARALLAX ===== */
+const card=document.getElementById("card");
+window.addEventListener("deviceorientation",(e)=>{
+let x=e.gamma/25;
+let y=e.beta/50;
+card.style.transform=`rotateY(${x}deg) rotateX(${y}deg)`;
 });
 </script>
 
